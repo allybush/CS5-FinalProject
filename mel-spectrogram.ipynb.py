@@ -14,7 +14,7 @@ audio_data = dst
 x , sr = librosa.load(audio_data,sr=1600)
 
 X = librosa.stft(x)
-X= librosa.hz_to_mel(X,htk=False)
+X= librosa.hz_to_mel(X , htk=False)
 Xdb = librosa.amplitude_to_db(abs(X))
 librosa.display.specshow(Xdb, sr=sr, x_axis='time', y_axis='log')
 plt.pyplot.colorbar()
