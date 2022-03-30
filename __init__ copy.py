@@ -32,7 +32,3 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 
 model.fit(training, validation_data=(test), epochs=5)
 
-
-
-
-
