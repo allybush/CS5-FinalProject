@@ -1,3 +1,0 @@
-#!/Users/darhart1/Desktop/repos/CS5-FinalProject/venv/bin/python
-from numba.pycc import main
-main()

@@ -1,0 +1,31 @@
+API Calls for Spotify API
+
+First get an auth token and replace it in the "Authorization: Bearer [auth token]"
+
+1. Gets the audio features of a song based on its uid
+
+
+curl -X "GET" "https://api.spotify.com/v1/audio-features/[song id]" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer [auth id]"
+
+example:
+
+curl -X "GET" "https://api.spotify.com/v1/audio-features/55yvzYuvJYG2RUEnMK78tr" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQCcUZj61Mo5yjnR436-xvufMvUe-_IvHKFAwhNDAnFPTSDXTDnjzo48i6XRbLwsDhriu5sAQy_cEhHvrh8d0Tltoq2oXuyGoyr4yU5u5obP0R1INvZiFJoEU1BEgGmtconKAWpjlkI7dPZMF-md2a-vBq-ESFlCoYhcgUXRU4LQDJQ"
+
+
+2. Gets the track data 
+
+From here you can get a song api under "preview_url"
+
+example: 
+
+curl -X "GET" "https://api.spotify.com/v1/tracks/55yvzYuvJYG2RUEnMK78tr" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQCcUZj61Mo5yjnR436-xvufMvUe-_IvHKFAwhNDAnFPTSDXTDnjzo48i6XRbLwsDhriu5sAQy_cEhHvrh8d0Tltoq2oXuyGoyr4yU5u5obP0R1INvZiFJoEU1BEgGmtconKAWpjlkI7dPZMF-md2a-vBq-ESFlCoYhcgUXRU4LQDJQ"
+
+
+https://p.scdn.co/mp3-preview/1154c774b13c5ef294af10dbe7d27b20d59b4252?cid=774b29d4f13844c495f206cafdad9c86
+
+
+3. Audio Analysis
+
+
+
+curl -X "GET" "https://api.spotify.com/v1/audio-analysis/55yvzYuvJYG2RUEnMK78tr" -H "Accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer BQCcUZj61Mo5yjnR436-xvufMvUe-_IvHKFAwhNDAnFPTSDXTDnjzo48i6XRbLwsDhriu5sAQy_cEhHvrh8d0Tltoq2oXuyGoyr4yU5u5obP0R1INvZiFJoEU1BEgGmtconKAWpjlkI7dPZMF-md2a-vBq-ESFlCoYhcgUXRU4LQDJQ"
