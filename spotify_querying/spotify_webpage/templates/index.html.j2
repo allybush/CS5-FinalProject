@@ -6,55 +6,34 @@ Spotify Webpage
 {% endblock %}
 
 {% block body %}
-<p>Connect To Spotify</p>
-<button type="button" id="connect" class="btn btn-primary">Connect</button>
+
+<div class="container h-100">
+    <div class="card row justify-content-center align-items-center" >
+        <div class="card-body">
 
 
-<script>
+            <h5 class="card-title">Search For a Song</h5>
+            <form action="/" method="POST">
+                <div class="input-group">
+                <div class="form-outline">
+                    <input placeholder="Search Song/Artist" name="search" type="search" id="form1" class="form-control" />
+                </div>
+                <input type="submit" class="btn btn-primary">
+                </input>
+                </div>
+            </form>
+
+            {% for result in results %}
+                <ul id="myUL">
+                    <li><a onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
+                </ul>  
+            {% endfor %}
+        </div>
+    </div>
+    
+        <p>{{ song_url }}</p>
 
 
-    let button = document.getElementById("connect");
-
-    button.addEventListener('click',async()=>{
-        console.log('working!')
-        await connect()
-    })
-
-
-    async function connect() {
-    console.log('in func')
-        var scope = 'user-read-private user-read-email';
-        var client_id = '8bded2f340e44e03a981384c95b90841'; // Your client id
-        var client_secret = '9d78bf687193476bb8bc81707f439431'; // Your secret
-        var redirect_uri = 'http://127.0.0.1:5000/callback'; // Your redirect uri
-
-        var state = '1234'
-
-        console.log(new URLSearchParams({
-            response_type: 'code',
-            client_id: client_id,
-            scope: scope,
-            redirect_uri: redirect_uri,
-            state: state
-        }))
-
-
-        await fetch('https://quiet-spire-64375.herokuapp.com/' + 'https://accounts.spotify.com/authorize?' + new URLSearchParams({
-            response_type: 'code',
-            client_id: client_id,
-            scope: scope,
-            redirect_uri: redirect_uri,
-            state: state
-        })).then(async(res) => { return await res.json() })
-            .then((data) => {
-            console.log(data)
-        }).catch((err)=>{
-        console.log(err)
-        })
-  }
-
-
-</script>
+</div>
 
 {% endblock %}
-

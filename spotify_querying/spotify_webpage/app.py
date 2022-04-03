@@ -1,26 +1,32 @@
 from flask import Flask, render_template, request 
 import requests
+# import request
+import spotify as sp
 app = Flask(__name__) #this has 2 underscores on each side 
  
-@app.route('/',methods=['GET', 'POST']) 
-def index(): 
 
+response = []
+song_url = '';
+
+
+@app.route('/',methods=['GET', 'POST']) 
+def index():
+
+	if(request.data):
+		print(request.data)
+	if(request.form.get('search') != None):
+		search_query = request.form.get('search')
+		response = sp.search(search_query)
+		print(response)
+		return render_template('index.html.j2',results=response, song_url=song_url) 
 	return render_template('index.html.j2') 
 
-# def req_spotify(data):
-# 	response = requests.get("http://api.open-notify.org/astros.json")
-# 	print(response)
-# 	print('cool')
 
- 
-# def get_spotify_auth():
-	
-# 	print('ok')
+@app.route('/song',methods=['GET', 'POST'])
+def song():
+	print('here!')
+	song_url = request.args.get('url')
+	print(song_url)
 
-
-@app.route('/callback',methods=['GET', 'POST']) 
-def callback():
-	if(request.form.get('search') != None):
-		req_spotify(request.form.get('search'))
-
-		print(request.form.get('search'))
+	# print('woah')
+	return render_template('index.html.j2', results=response, song_url=song_url) 	
