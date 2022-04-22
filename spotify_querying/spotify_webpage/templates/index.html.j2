@@ -26,11 +26,29 @@ Spotify Webpage
             {% for result in results %}
                 <ul id="myUL">
                     <li><a onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
-                </ul>  
+                </ul>
             {% endfor %}
         </div>
     </div>
-    
+
 </div>
+
+<div class="holder">
+    <div data-role="controls">
+        <button class="button button2">Record</button>
+    </div>
+    <div data-role="recordings"></div>
+</div>
+<button onclick='random();' class="button button2">Generate Random Audio</button>
+<div id="myDIV">
+  <audio controls autoplay muted>
+    <source src="/static/5.wav" type="audio/wav">
+  </audio>
+</div>
+<span id='player'></span>
+
+
+
+
 
 {% endblock %}
