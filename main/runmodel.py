@@ -3,6 +3,7 @@ import keras.preprocessing
 import tensorflow as tf
 import numpy as np
 
+from sclib import SoundcloudAPI, Track, Playlist
 import skimage
 import torch
 from PIL import Image
@@ -16,8 +17,9 @@ from pydub import AudioSegment
 
 import io  # allows us to temporarily store the image to access with PIL
 
+
 # files
-src = '/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/champion.m4a' #replace with any file you want :D
+src = '/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/recording2.m4a' #replace with any file you want :D
 dst = 'test.wav'  # keep this one the same
 
 # convert format to mp3
@@ -38,8 +40,8 @@ x, sr = librosa.load(dst, sr=1600)
 duration = len(x)/sr
 
 if duration > 30:
-
     x, _ = librosa.effects.trim(x)
+    x = x[0:30*sr]
     x = x[0:431*512]
 
     # convert to spectrogram section
@@ -49,7 +51,8 @@ if duration > 30:
 
     # saving as an image of 432 x 288 dimensions
 
-    plt.figure(figsize=(4.23, 2.38))   # idk why this size works but it does (even tho it doesn't follow the pixel to inches conversion)
+    plt.figure(figsize=(4.5,3)) # idk why this size works but it does (even tho it doesn't follow the pixel to inches conversion)
+    plt.axis('off')
 
     img = librosa.display.specshow(S_dB, n_fft=1024, hop_length=512)
 
@@ -57,7 +60,7 @@ if duration > 30:
 
     # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
 
-    plt.savefig(savedimage, format='png', bbox_inches='tight', pad_inches=0.5)
+    plt.savefig(savedimage, format='png', bbox_inches='tight', pad_inches=0)
 
     # starting to run it on the model
 
