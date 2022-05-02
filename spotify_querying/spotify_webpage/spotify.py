@@ -8,12 +8,19 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="8bded2f340
 
 def search(name):
     if(name != ''):
-        results = sp.search(q=name, limit=5)
+        results = sp.search(q=name, limit=5, market='US')
         return results['tracks']['items']
     return []
 
-    
 
+def getTrack(id):
+    if(id != ''):
+        results = sp.track(track_id=id)
+        console.log(results)
+    return []
+
+
+getTrack('1ZM8toCOlnfBKJdvR8GqUq?si=3d4c58e98973402b')
 
 def getSongWAV():
     # sp.track()
