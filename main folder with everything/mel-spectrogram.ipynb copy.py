@@ -1,3 +1,14 @@
+"""
+
+BEFORE USING: Set up a folder called "Data" and create 8 subfolders in that
+folder called "classical", "country", "rap", "jazz", "metal", "pop",
+"rock", or "indie" . Replace the address in the variable "path" in line 63
+with the address to the bigger folder that holds the 8 subfolders. This should
+fill each subfolder with images of the corresponding genre. 
+
+"""
+
+
 import keras.preprocessing
 import tensorflow as tf
 import numpy as np
@@ -40,21 +51,17 @@ rap = ["https://open.spotify.com/playlist/4riovLwMCrY3q0Cd4e0Sqp?si=374db058d82c
 rock = ["https://open.spotify.com/playlist/5BygwTQ3OrbiwVsQhXFHMz?si=fa9e7af2aaae4418", "https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=023caccfca29443d", "https://open.spotify.com/playlist/37i9dQZF1DWWGFQLoP9qlv?si=f16110e55b3240c5", "https://open.spotify.com/playlist/37i9dQZF1DX9wa6XirBPv8?si=835b6b946d7a4508", "https://open.spotify.com/playlist/37i9dQZF1DX82Zzp6AKx64?si=acb684bb917f4298"]
 country = ["https://open.spotify.com/playlist/37i9dQZF1EQmPV0vrce2QZ?si=240d75254aa54ea2", "https://open.spotify.com/playlist/37i9dQZF1DX1lVhptIYRda?si=e474d00183764905", "https://open.spotify.com/playlist/37i9dQZF1DXdxUH6sNtcDe?si=69b089c9899d4811", "https://open.spotify.com/playlist/37i9dQZF1DWVFzWmxRnRJH?si=1c90eb52e02245c7"]
 
-
-redogenresplaylist = [jazz]
-redogenres = ["jazz"]
-
 genresplaylist = [classical, country, rap, jazz, metal, pop, rock, indie]
 
 
-for y in range(len(redogenres)):
+for y in range(len(genres)):
     count = 0
-    for x in range(len(redogenresplaylist[y])):
-        playlistname = redogenresplaylist[y][x]
+    for x in range(len(genresplaylist[y])):
+        playlistname = genresplaylist[y][x]
         playlistresults = sp.playlist(playlistname)
         length = len(playlistresults['tracks']['items'])
         for z in range(length):
-            path = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata/" + redogenres[y] + "/" + redogenres[y]
+            path = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata/" + genres[y] + "/" + genres[y]
             try:
                 songurl = playlistresults['tracks']['items'][z]['track']['preview_url']
                 if songurl != None:
@@ -103,7 +110,3 @@ for y in range(len(redogenres)):
 
             except TypeError:
                 print("eheheh")
-
-
-
-
