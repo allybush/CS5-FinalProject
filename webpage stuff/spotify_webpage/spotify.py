@@ -16,7 +16,6 @@ def search(name):
 def getTrack(id):
     if(id != ''):
         results = sp.track(track_id=id)
-        # console.log(results)
     return []
 
 
