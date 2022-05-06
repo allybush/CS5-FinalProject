@@ -18,8 +18,8 @@ def index():
 		search_query = request.form.get('search')
 		response = sp.search(search_query)
 		print(response)
-		return render_template('index.html.j2',results=response)
-	return render_template('index.html.j2')
+		return render_template('base.html.j2',results=response)
+	return render_template('base.html.j2')
 
 
 @app.route('/song',methods=['GET', 'POST'])
@@ -29,4 +29,4 @@ def song():
 	# print(song_url)
 
 	# print('woah')
-	return render_template('index.html.j2', results=response, song_url=song_url)
+	return render_template('base.html.j2', results=response, song_url=song_url)

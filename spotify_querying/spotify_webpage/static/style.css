@@ -1,4 +1,4 @@
-/* #myInput {
+#myInput {
     background-image: url('/css/searchicon.png');
     background-position: 10px 12px;
     background-repeat: no-repeat;
@@ -28,7 +28,7 @@
 
   #myUL li a:hover:not(.header) {
     background-color: #eee;
-  } */
+  }
 
 
   /* body {
@@ -48,7 +48,7 @@
   height: 100%;
   width: 100%;
   margin: 0;
-              }
+              } */
   .button {
     background-color: #4CAF50;
     border: none;
@@ -82,13 +82,13 @@
                   outline: none;
               }
 
-              body {
+              /* body {
                 position: relative;
                 height: 100%;
                 width: 100%;
                 margin: 0;
                 text-align: center;
-                            }
+                            } */
                 .button {
                   background-color: #4CAF50;
                   border: none;
@@ -118,4 +118,4 @@
                 }
                 .player {
                 padding: 300px 300px;
-                } */
+                }
