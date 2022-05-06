@@ -1,6 +1,6 @@
 function getSongData(url) {
 
-    console.log(url);
+    // console.log(url);
 
     if(url == None || url == "None"){
       console.log('KNEW IT!!')
