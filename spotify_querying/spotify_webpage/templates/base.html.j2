@@ -40,8 +40,114 @@
           </div>
       </nav>
 
+      <main role="main">
 
-      {% block body %} body empty {% endblock %}
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+          <div class="container">
+            <h1 class="display-3">Genre Classification</h1>
+            <p>For our CS5 project, we decided to classify songs based on genre with machine learning.</p>
+            <!-- <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
+          </div>
+        </div>
+
+        <div class="container">
+          <!-- Example row of columns -->
+          <div class="row">
+            <div class="col-md-4">
+              <h2>Song from Spotify</h2>
+              <p>Get a song from your spotify to use for genre classification.</p>
+              <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#spotifyModal">Start &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2>Generate Random Song</h2>
+              <p>Generate a random song to be used for genre classification.</p>
+              <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#randomModal">Start &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+              <h2>Record Yourself</h2>
+              <p>Record yourself to be used for genre classification.</p>
+              <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#recordModal">Start &raquo;</a></p>
+            </div>
+          </div>
+
+          <hr>
+
+        </div> <!-- /container -->
+
+
+
+        <!-- Spotify Modal -->
+        <div class="modal fade" id="spotifyModal" tabindex="-1" role="dialog" aria-labelledby="spotifyModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="spotifyModalLabel">Spotify Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Random Modal -->
+        <div class="modal fade" id="randomModal" tabindex="-1" role="dialog" aria-labelledby="randomModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="randomModalLabel">Random Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Record Modal -->
+        <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="recordModalLabel">Record Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </main>
+
+
+      <!-- {% block body %} body empty {% endblock %} -->
 
 
 
