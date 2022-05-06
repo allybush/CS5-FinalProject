@@ -4,16 +4,17 @@ BEFORE USING: Set up a folder called "Data" and create 8 subfolders in that
 folder called "classical", "country", "rap", "jazz", "metal", "pop",
 "rock", or "indie" . Replace the address in the variable "path" in line 63
 with the address to the bigger folder that holds the 8 subfolders. This should
-fill each subfolder with images of the corresponding genre. 
+fill each subfolder with images of the corresponding genre.
 
 """
+
 
 
 import keras.preprocessing
 import tensorflow as tf
 import numpy as np
 import requests
-import math
+
 
 import json
 
@@ -33,7 +34,7 @@ import io  # allows us to temporarily store the image to access with PIL
 
 dst = 'test.wav'
 
-#take stuff from spotify
+#take stuff from spotipy
 
 cid ='0d57547cb17c48aaa7aacd405a431360'
 secret ='650f7983361f407eb6136da8d0010796'
@@ -51,10 +52,12 @@ rap = ["https://open.spotify.com/playlist/4riovLwMCrY3q0Cd4e0Sqp?si=374db058d82c
 rock = ["https://open.spotify.com/playlist/5BygwTQ3OrbiwVsQhXFHMz?si=fa9e7af2aaae4418", "https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=023caccfca29443d", "https://open.spotify.com/playlist/37i9dQZF1DWWGFQLoP9qlv?si=f16110e55b3240c5", "https://open.spotify.com/playlist/37i9dQZF1DX9wa6XirBPv8?si=835b6b946d7a4508", "https://open.spotify.com/playlist/37i9dQZF1DX82Zzp6AKx64?si=acb684bb917f4298"]
 country = ["https://open.spotify.com/playlist/37i9dQZF1EQmPV0vrce2QZ?si=240d75254aa54ea2", "https://open.spotify.com/playlist/37i9dQZF1DX1lVhptIYRda?si=e474d00183764905", "https://open.spotify.com/playlist/37i9dQZF1DXdxUH6sNtcDe?si=69b089c9899d4811", "https://open.spotify.com/playlist/37i9dQZF1DWVFzWmxRnRJH?si=1c90eb52e02245c7"]
 
+
+
 genresplaylist = [classical, country, rap, jazz, metal, pop, rock, indie]
 
 
-for y in range(len(genres)):
+for y in range(len(genresplaylist)):
     count = 0
     for x in range(len(genresplaylist[y])):
         playlistname = genresplaylist[y][x]
