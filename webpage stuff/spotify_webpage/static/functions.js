@@ -1,10 +1,7 @@
 function getSongData(url) {
 
-    // console.log(url);
-
-    if(url == None || url == "None"){
-      console.log('KNEW IT!!')
-    }
+    console.log(url);
+    console.log('here!!')
 
 
     var xhttp = new XMLHttpRequest();
@@ -13,6 +10,28 @@ function getSongData(url) {
     xhttp.send();
 }
 
+
+function url_for(){
+  console.log('test')
+}
+
+function myFunction(){
+  var x = document.getElementById("myDIV");
+  x.style.display = "none";
+  document.getElementById("player").innerHTML="<embed src=\""+"stop"+"\" hidden=\"false\" loop=\"false\" />";
+  var y = document.getElementById("exit");
+  y.style.display = "none";
+  var z = document.getElementById("use");
+  z.style.display = "none";
+  var r = document.getElementById("rbutton");
+  r.style.display = "block";
+  var g = document.getElementById("generate");
+  g.style.display = "block";
+  var rr = document.getElementById("record");
+  rr.style.display = "none";
+  var e = document.getElementById("text");
+  e.style.display = "none";
+}
 function button() { //this doesn't work for some reason
 var x = document.getElementById("rbutton");
 if (x.innerText == "Record Your Own Audio") {
@@ -21,9 +40,33 @@ if (x.innerText == "Record Your Own Audio") {
   x.innerText = "Record Your Own Audio";
 }
 }
+function load(){
+  var z = document.getElementById("use");
+  z.style.display = "none";
+  var y = document.getElementById("exit");
+  y.style.display = "none";
+  var t = document.getElementById("text");
+  t.style.display = "none";
+}
+function record(){
+  var y = document.getElementById("record");
+  y.style.display = "block";
+  var g = document.getElementById("generate");
+  g.style.display = "none";
+}
 function random(){
+     var x = document.getElementById("myDIV");
+     x.style.display = "block";
      var soundFile = "static/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
      document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\" hidden=\"false\" loop=\"false\" />";
+     var y = document.getElementById("exit");
+     y.style.display = "block";
+     var z = document.getElementById("use");
+     z.style.display = "block";
+     var r = document.getElementById("record");
+     r.style.display = "none";
+     var s = document.getElementById("rbutton");
+     s.style.display = "none";
 }
     jQuery(document).ready(function () {
         var $ = jQuery;
@@ -52,6 +95,12 @@ function random(){
                 }).catch(function (err) {});
             },
             stop: function (listObject) {
+                var z = document.getElementById("exit");
+                z.style.display = "block";
+                var y = document.getElementById("use");
+                y.style.display = "block";
+                var t = document.getElementById("text");
+                t.style.display = "block";
                 if (null !== myRecorder.objects.stream) {
                     myRecorder.objects.stream.getAudioTracks()[0].stop();
                 }

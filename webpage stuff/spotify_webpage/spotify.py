@@ -7,9 +7,24 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="8bded2f340
 
 
 def search(name):
-    if(name != ''):
-        results = sp.search(q=name, limit=5, market='US')
-        return results['tracks']['items']
+    try:
+        if(name != ''):
+            results = sp.search(q=name, limit=5, market='US')
+            # print(results)
+            tracks = results['tracks']['items']
+            for track in tracks:
+                if(track['preview_url'] == None):
+                    print('issue with a track!')
+                    print(track['uri'])
+                    track_data = sp.tracks([track['uri']], market='US')
+                    print('get track data!')
+                    print(track_data)
+
+
+            return tracks
+    except Exception as err:
+        print(err)
+        print(err.doc)
     return []
 
 
@@ -18,6 +33,8 @@ def getTrack(id):
         results = sp.track(track_id=id)
     return []
 
+def wow():
+    print('wow')
 
 # getTrack('1ZM8toCOlnfBKJdvR8GqUq?si=3d4c58e98973402b')
 
