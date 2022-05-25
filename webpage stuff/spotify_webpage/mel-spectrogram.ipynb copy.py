@@ -98,7 +98,3 @@ for y in range(len(genresplaylist)):
 
             except TypeError:
                 print("eheheh")
-
-
-
-
