@@ -1,16 +1,22 @@
 function getSongData(url) {
 
-    // console.log(url);
+    console.log(url);
+    console.log('here!!')
 
-    if(url == None || url == "None"){
-      console.log('KNEW IT!!')
-    }
+    // if(url == None || url == "None"){
+    //   console.log('KNEW IT!!')
+    // }
 
 
     var xhttp = new XMLHttpRequest();
     // console.log("test!!")
     xhttp.open("POST", `/song`, true);
     xhttp.send();
+}
+
+
+function url_for(){
+  console.log('test')
 }
 
 function myFunction(){
