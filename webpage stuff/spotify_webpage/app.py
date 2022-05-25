@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import requests
+# import request
+import runmodel
 import spotify as sp
 app = Flask(__name__) #this has 2 underscores on each side
 
