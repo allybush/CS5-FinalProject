@@ -9,9 +9,8 @@ response = []
 song_url = '';
 
 
-@app.route('/',methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
-
 	if(request.data):
 		print(request.data)
 	if(request.form.get('search') != None):
