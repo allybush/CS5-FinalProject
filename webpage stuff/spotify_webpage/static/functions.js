@@ -7,20 +7,20 @@ function getSongData(url) {
     var param = name + "=" + url;
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open('POST', '/results', true);
+    xhttp.open('POST', '/song', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    xhttp.onreadystatechange = function() {//Call a function when the state changes.
-      if(xhttp.readyState == 4 && xhttp.status == 200) {
-          var div = document.getElementById("decision");
-          var inner = document.createElement("p");
-          var text = document.createTextNode(xhttp.responseText);
-          inner.appendChild(text);
-          div.appendChild(inner);
-          console.log("done");
-
-      }
-    }
+    // xhttp.onreadystatechange = function() {//Call a function when the state changes.
+    //   if(xhttp.readyState == 4 && xhttp.status == 200) {
+    //       var div = document.getElementById("decision");
+    //       var inner = document.createElement("p");
+    //       var text = document.createTextNode(xhttp.responseText);
+    //       inner.appendChild(text);
+    //       div.appendChild(inner);
+    //       console.log("done");
+    //
+    //   }
+    // }
     xhttp.send(param);
 
   }

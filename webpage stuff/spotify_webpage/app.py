@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import requests
 
 import runmodel
@@ -24,9 +24,13 @@ def base():
 def url_for():
 	print('hiii')
 
-@app.route('/song',methods=['GET', 'POST'])
+@app.route('/song', methods=['POST'])
 def song():
-	print('here2!')
-	song_url = request.args.get('url')
-	print(song_url)
-	return render_template('base.html.j2', results=response, song_url=song_url)
+	print(request.form.get('url'))
+	address = request.form.get('url')
+	if(request.form.get('url')):
+		result = runmodel.run(address)
+		print(result)
+		return jsonify(result=result)
+	else:
+		return "hi"
