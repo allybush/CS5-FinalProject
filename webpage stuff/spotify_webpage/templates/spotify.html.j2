@@ -16,7 +16,7 @@
 
             <ul id="myUL">
               {% if result['preview_url'] %}
-                <li><a href = '/' onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
+                <li><a href = '#' onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
               {% endif %}
             </ul>
         {% endfor %}

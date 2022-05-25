@@ -29,6 +29,9 @@
   #myUL li a:hover:not(.header) {
     background-color: #eee;
   }
+  #embed {
+    display: block;!important;
+  }
 
 
   /* body {

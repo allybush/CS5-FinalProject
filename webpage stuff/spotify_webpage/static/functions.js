@@ -10,17 +10,19 @@ function getSongData(url) {
     xhttp.open('POST', '/song', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    // xhttp.onreadystatechange = function() {//Call a function when the state changes.
-    //   if(xhttp.readyState == 4 && xhttp.status == 200) {
-    //       var div = document.getElementById("decision");
-    //       var inner = document.createElement("p");
-    //       var text = document.createTextNode(xhttp.responseText);
-    //       inner.appendChild(text);
-    //       div.appendChild(inner);
-    //       console.log("done");
-    //
-    //   }
-    // }
+    xhttp.onreadystatechange = function() {//Call a function when the state changes.
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
+          var div = document.getElementById("decision");
+          var inner = document.createElement("p");
+          var response = JSON.parse(xhttp.responseText);
+          var text = document.createTextNode(response["result"]);
+          inner.appendChild(text);
+          div.appendChild(inner);
+          const spotifyModal = new mdb.Modal(document.getElementById('spotifyModal'), options)
+          spotifyModal.hide();
+          console.log("done");
+      }
+    }
     xhttp.send(param);
 
   }
@@ -41,7 +43,7 @@ function getSongData(url) {
 
   function random(){
        var soundFile = "static/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
-       document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\" hidden=\"false\" loop=\"false\" />";
+       document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\" id=\"embed\" hidden=\"false\" loop=\"false\" />";
   }
       jQuery(document).ready(function () {
           var $ = jQuery;
