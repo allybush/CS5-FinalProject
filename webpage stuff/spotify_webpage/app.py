@@ -19,7 +19,7 @@ def base():
 		response = sp.search(search_query)
 		print(response)
 		return render_template('base.html.j2', results=response)
-	return render_template('base.html.j2')
+	return render_template('base.html.j2',genre='123')
 
 def url_for():
 	print('hiii')

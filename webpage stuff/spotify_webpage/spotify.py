@@ -9,7 +9,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="8bded2f340
 def search(name):
     try:
         if(name != ''):
-            results = sp.search(q=name, limit=5, market='US')
+            results = sp.search(q=name, limit=20, market='US')
             # print(results)
             tracks = results['tracks']['items']
             for track in tracks:
