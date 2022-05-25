@@ -1,17 +1,32 @@
 function getSongData(url) {
 
     console.log(url);
-    console.log('here!!')
+    console.log('here!!');
 
-
+    var name = "url";
+    var param = name + "=" + url;
     var xhttp = new XMLHttpRequest();
-    // console.log("test!!")
-    xhttp.open("POST", `/song`, true);
-    xhttp.send();
-}
+
+    xhttp.open('POST', '/results', true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    xhttp.onreadystatechange = function() {//Call a function when the state changes.
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
+          var div = document.getElementById("decision");
+          var inner = document.createElement("p");
+          var text = document.createTextNode(xhttp.responseText);
+          inner.appendChild(text);
+          div.appendChild(inner);
+          console.log("done");
+
+      }
+    }
+    xhttp.send(param);
+
+  }
 
 
-function url_for(){
+  function url_for(){
   console.log('test')
 }
 

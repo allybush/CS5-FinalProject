@@ -15,7 +15,7 @@
 
         {% for result in results %}
             <ul id="myUL">
-                <li><a onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
+                <li><a href = '/' onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
             </ul>
         {% endfor %}
     </div>

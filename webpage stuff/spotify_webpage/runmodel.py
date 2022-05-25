@@ -4,7 +4,6 @@ import tensorflow as tf
 import numpy as np
 import requests
 
-from sclib import SoundcloudAPI, Track, Playlist
 import skimage
 import torch
 from PIL import Image
@@ -74,7 +73,6 @@ def run(sourceurl):
         # thanks to this dude for helping with converting an image to a tensor https://www.tutorialspoint.com/how-to-convert-an-image-to-a-pytorch-tensor
 
         image = Image.open(savedimage)
-        image.show()
         image = tf.convert_to_tensor(image, dtype=tf.float32)
         image = np.array([image])
 

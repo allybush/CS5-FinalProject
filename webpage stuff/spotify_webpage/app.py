@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import requests
 # import request
 import runmodel
@@ -7,32 +7,31 @@ app = Flask(__name__) #this has 2 underscores on each side
 
 
 response = []
-song_url = '';
+song_url = ''
 
 
-@app.route('/',methods=['GET', 'POST'])
-def base():
-	print('here1!')
-	# if(request.data):
-	# print(request.data)
-	# print(request.form.get('search'))
-	# if(request.form.get('search') != None):
-	search_query = request.form.get('search')
-	print(search_query)
-	if(search_query != '' and search_query != None):
+@app.route('/', methods=['GET', 'POST'])
+def index():
+	if(request.data):
+		print(request.data)
+	if(request.form.get('search') != None):
+		search_query = request.form.get('search')
 		response = sp.search(search_query)
-		print(response)
-		return render_template('base.html.j2', results=response)
+		return render_template('base.html.j2',results=response)
 	return render_template('base.html.j2')
 
-def url_for():
-	print('hiii')
 
-@app.route('/song',methods=['GET', 'POST'])
+@app.route('/song', methods=['POST'])
 def song():
-	print('here2!')
-	song_url = request.args.get('url')
-	print(song_url)
-
+	return render_template('base.html.j2')
 	# print('woah')
-	return render_template('base.html.j2', results=response, song_url=song_url)
+	#return render_template('base.html.j2', results=response, song_url=song_url, decision = decision)
+@app.route('/results', methods = ['POST'])
+def results():
+	response=request.form.get("url")
+	#runs model on it
+	#returns decision/image
+	if(response != None):
+		return response
+	else:
+		return "hi"
