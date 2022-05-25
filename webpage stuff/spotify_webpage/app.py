@@ -1,37 +1,32 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 import requests
-# import request
+
 import runmodel
 import spotify as sp
 app = Flask(__name__) #this has 2 underscores on each side
 
 
 response = []
-song_url = ''
+song_url = '';
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-	if(request.data):
-		print(request.data)
-	if(request.form.get('search') != None):
-		search_query = request.form.get('search')
+@app.route('/',methods=['GET', 'POST'])
+def base():
+	print('here1!')
+	search_query = request.form.get('search')
+	print(search_query)
+	if(search_query != '' and search_query != None):
 		response = sp.search(search_query)
-		return render_template('base.html.j2',results=response)
-	return render_template('base.html.j2')
+		print(response)
+		return render_template('base.html.j2', results=response)
+	return render_template('base.html.j2',genre='123')
 
+def url_for():
+	print('hiii')
 
-@app.route('/song', methods=['POST'])
+@app.route('/song',methods=['GET', 'POST'])
 def song():
-	return render_template('base.html.j2')
-	# print('woah')
-	#return render_template('base.html.j2', results=response, song_url=song_url, decision = decision)
-@app.route('/results', methods = ['POST'])
-def results():
-	response=request.form.get("url")
-	#runs model on it
-	#returns decision/image
-	if(response != None):
-		return response
-	else:
-		return "hi"
+	print('here2!')
+	song_url = request.args.get('url')
+	print(song_url)
+	return render_template('base.html.j2', results=response, song_url=song_url)
