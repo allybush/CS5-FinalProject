@@ -2,6 +2,7 @@ import keras.models
 import keras.preprocessing
 import tensorflow as tf
 import numpy as np
+import requests
 
 from sclib import SoundcloudAPI, Track, Playlist
 import skimage
@@ -18,10 +19,11 @@ from pydub import AudioSegment
 import io  # allows us to temporarily store the image to access with PIL
 
 
-def run(source):
+def run(sourceurl):
     # files
-    src = source #replace with any file you want :D
-    dst = 'test.wav'  # keep this one the same
+    response = requests.get(sourceurl)
+    open("temp.mp3", "wb").write(response.content)
+    src = "temp.mp3" #replace with any file you want :D
 
     # convert format to mp3
 
