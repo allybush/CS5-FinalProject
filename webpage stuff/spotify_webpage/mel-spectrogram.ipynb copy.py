@@ -94,6 +94,9 @@ for y in range(len(genresplaylist)):
                         # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
 
                         plt.savefig(path, format='png', bbox_inches='tight', pad_inches=0)
+                        image = Image.open(savedimage)
+                        image = image.convert('RGB')
+                        image.save(path)
 
 
             except TypeError:

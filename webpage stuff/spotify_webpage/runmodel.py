@@ -27,7 +27,6 @@ def run(path):
 
     src = "temp.mp3" #replace with any file you want :D
 
-
     dst = 'test.wav'
     # convert format to mp3
 
@@ -84,10 +83,10 @@ def run(path):
 
         # convert single image to a batch.
 
-        # predictions = model.predict(image)
-        # predictions = np.argmax(predictions)
-        # predictions = genres[predictions]
-        #
+        predictions = model.predict(image)
+        predictions = np.argmax(predictions)
+        predictions = genres[predictions]
+        
         # savedimage.close()
         return "HAHA"
     else:
