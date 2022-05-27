@@ -5,7 +5,6 @@ import numpy as np
 import requests
 
 import torchvision
-
 import torch
 from PIL import Image
 
@@ -78,7 +77,6 @@ def run(path):
 
         image = Image.open(savedimage)
         image = image.convert('RGB')
-        image = torchvision.transforms.functional.to_tensor(image)
         image = np.array(image)
         image = np.reshape(image,(1,231,348,3))
 
