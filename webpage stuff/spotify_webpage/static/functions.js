@@ -18,8 +18,7 @@ function getSongData(url) {
           var text = document.createTextNode(response["result"]);
           inner.appendChild(text);
           div.appendChild(inner);
-          const spotifyModal = new mdb.Modal(document.getElementById('spotifyModal'), options)
-          spotifyModal.hide();
+          $('#spotifyModal').modal('hide');
           console.log("done");
       }
     }
