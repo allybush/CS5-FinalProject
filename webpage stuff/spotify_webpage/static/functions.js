@@ -10,7 +10,8 @@ function getSongData(url) {
     xhttp.open('POST', '/song', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
-    xhttp.onreadystatechange = function() {//Call a function when the state changes.
+    xhttp.onreadystatechange = function() { //Call a function when the state changes.
+      var $ = jQuery;
       if(xhttp.readyState == 4 && xhttp.status == 200) {
           var div = document.getElementById("decision");
           var inner = document.createElement("p");
@@ -41,8 +42,8 @@ function getSongData(url) {
   }
 
   function random(){
-       var soundFile = "static/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
-       document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\" id=\"embed\" hidden=\"false\" loop=\"false\" />";
+       var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
+       document.getElementById("player").innerHTML="<audio src=\""+soundFile+"\" type=\"audio/wav\" id=\"embed\" loop=\"false\" /> Audio";
   }
       jQuery(document).ready(function () {
           var $ = jQuery;
