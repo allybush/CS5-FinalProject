@@ -14,7 +14,6 @@ song_url = '';
 def base():
 	print('here1!')
 	search_query = request.form.get('search')
-	print(search_query)
 	if(search_query != '' and search_query != None):
 		response = sp.search(search_query)
 		print(response)
@@ -28,9 +27,8 @@ def url_for():
 def song():
 	print(request.form.get('url'))
 	address = request.form.get('url')
-	if(request.form.get('url')):
+	if(address!= None):
 		result = runmodel.run(address)
-		print(result)
 		return jsonify(result=result)
 	else:
-		return "hi"
+		return "Could not find URL for song"
