@@ -12,11 +12,9 @@ song_url = '';
 
 @app.route('/',methods=['GET', 'POST'])
 def base():
-	print('here1!')
 	search_query = request.form.get('search')
 	if(search_query != '' and search_query != None):
 		response = sp.search(search_query)
-		print(response)
 		return render_template('base.html.j2', results=response)
 	return render_template('base.html.j2',genre='123')
 
