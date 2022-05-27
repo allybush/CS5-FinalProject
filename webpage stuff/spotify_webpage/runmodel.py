@@ -5,7 +5,6 @@ import numpy as np
 import requests
 
 import torchvision
-import skimage
 import torch
 from PIL import Image
 
@@ -22,7 +21,7 @@ import io  # allows us to temporarily store the image to access with PIL
 
 def run(path):
     # files
-    response = requests.get(link)
+    response = requests.get(path)
     open("temp.mp3", "wb").write(response.content)
 
     src = "temp.mp3" #replace with any file you want :D
@@ -78,17 +77,20 @@ def run(path):
 
         image = Image.open(savedimage)
         image = image.convert('RGB')
-        image = torchvision.transforms.functional.to_tensor(image)
         image = np.array(image)
+        image = image.reshape((1,231,348,3))
+
+        # image = torchvision.transforms.functional.to_tensor(image)
+        # image = tf.stack(image)
 
         # convert single image to a batch.
 
         predictions = model.predict(image)
         predictions = np.argmax(predictions)
         predictions = genres[predictions]
-        
+
         # savedimage.close()
-        return "HAHA"
+        return predictions
     else:
         print("Your clip is only " + str(duration) + " seconds. Make sure it's more than 30 seconds!")
         return "no"
