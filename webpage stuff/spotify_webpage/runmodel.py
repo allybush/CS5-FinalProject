@@ -78,10 +78,7 @@ def run(path):
         image = Image.open(savedimage)
         image = image.convert('RGB')
         image = np.array(image)
-        image = image.reshape((1,231,348,3))
-
-        # image = torchvision.transforms.functional.to_tensor(image)
-        # image = tf.stack(image)
+        image = np.reshape(image,(1,231,348,3))
 
         # convert single image to a batch.
 
