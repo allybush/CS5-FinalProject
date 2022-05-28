@@ -2,7 +2,7 @@
     <div class="card-body">
 
         <h5 class="card-title">Search For a Song</h5>
-        <div class="inline-display"> 
+        <div class="inline-display">
         <form method="POST">
 
 
@@ -17,17 +17,6 @@
 
         <div id="listdiv"> </div>
 
- {#
-        {% for result in results %}
-
-            <ul id="myUL">
-              {% if result['preview_url'] %}
-                <li><a href = '#' onclick="getSongData('{{ result['preview_url'] }}')">{{ result['name'] }}</a></li>
-              {% endif %}
-            </ul>
-        {% endfor %}
-
-#}
 
 
     </div>

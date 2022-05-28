@@ -1,8 +1,11 @@
 function getSongData(url) {
-
     console.log(url);
     console.log('here!!');
 
+    if(document.getElementById('innerdecision') != null)
+    {
+      document.getElementById('innerdecision').remove();
+    }
     var name = "url";
     var param = name + "=" + url;
     var xhttp = new XMLHttpRequest();
@@ -14,11 +17,11 @@ function getSongData(url) {
       if(xhttp.readyState == 4 && xhttp.status == 200) {
           var div = document.getElementById("decision");
           var inner = document.createElement("p");
+          inner.id = "innerdecision";
           var response = JSON.parse(xhttp.responseText);
-          var text = document.createTextNode(response["result"]);
-          inner.appendChild(text);
+          inner.innerHTML = response["result"];
           div.appendChild(inner);
-          $('#spotifyModal').modal('hide');
+          $("#spotifyModal").modal('hide');
           console.log("done");
       }
     }
@@ -28,6 +31,11 @@ function getSongData(url) {
 
 function submitChoices()
 {
+
+  if(document.getElementById('myUL')!= null)
+  {
+    document.getElementById('myUL').remove();
+  }
   var input = document.getElementById('input').value;
   input = "input=" + input;
   var xhttp = new XMLHttpRequest();
@@ -56,8 +64,8 @@ function submitChoices()
               {
                 var temp = document.createElement("li");
                 var link  =  document.createElement("a");
-                link.href = "#";
-                link.onclick = "getSongData(response[i]['preview_url']);";
+                link.href = '#';
+                link.onclick = function () { getSongData(response[i]['preview_url'])} ;
                 link.innerHTML = response[i]['name'];
                 temp.appendChild(link);
                 newlist.appendChild(temp);
