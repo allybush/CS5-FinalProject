@@ -11,7 +11,6 @@ function getSongData(url) {
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhttp.onreadystatechange = function() { //Call a function when the state changes.
-      var $ = jQuery;
       if(xhttp.readyState == 4 && xhttp.status == 200) {
           var div = document.getElementById("decision");
           var inner = document.createElement("p");
@@ -27,6 +26,52 @@ function getSongData(url) {
 
   }
 
+function submitChoices()
+{
+  var input = document.getElementById('input').value;
+  input = "input=" + input;
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('POST', '/', true);
+  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  var submit = document.getElementById("submitbutton");
+  submit.innerHTML = "Loading...";
+
+  xhttp.onreadystatechange = function() { //Call a function when the state changes.
+    if(xhttp.readyState == 4 && xhttp.status == 200) {
+          var response = JSON.parse(xhttp.responseText);
+          response = response['response'];
+          var listdiv = document.getElementById('listdiv');
+          var newlist = document.createElement("ul");
+          newlist.id = "myUL";
+          if (response == "NO")
+          {
+            var error = document.createElement("p");
+            error.innerHTML = "No songs found";
+
+          }
+          else {
+            for(let i=0; i<response.length;i++)
+            {
+              if(response[i]['preview_url'])
+              {
+                var temp = document.createElement("li");
+                var link  =  document.createElement("a");
+                link.href = "#";
+                link.onclick = "getSongData(response[i]['preview_url']);";
+                link.innerHTML = response[i]['name'];
+                temp.appendChild(link);
+                newlist.appendChild(temp);
+              }
+            }
+            listdiv.appendChild(newlist);
+            submit.innerHTML = "Submit!";
+        }
+    }
+  }
+  xhttp.send(input);
+
+
+}
 
   function url_for(){
     console.log('test')

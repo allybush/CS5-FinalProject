@@ -2,16 +2,22 @@
     <div class="card-body">
 
         <h5 class="card-title">Search For a Song</h5>
-        <form action="/" method="POST">
-            <div class="input-group">
-            <div class="form-outline">
-                <input placeholder="Search Song/Artist" name="search" type="search" id="form1" class="form-control" />
-            </div>
-            <input type="submit" class="btn btn-primary">
-            </input>
-            </div>
-        </form>
+        <div class="inline-display"> 
+        <form method="POST">
 
+
+                <input  id="input" placeholder="Search Song/Artist" name="search" type="search" id="form1" class="form-control" />
+
+
+
+        </form>
+        </div>
+        <button id = "submitbutton" class="btn btn-primary" onclick = "submitChoices();"> Submit! </button>
+
+
+        <div id="listdiv"> </div>
+
+ {#
         {% for result in results %}
 
             <ul id="myUL">
@@ -21,7 +27,7 @@
             </ul>
         {% endfor %}
 
-
+#}
 
 
     </div>

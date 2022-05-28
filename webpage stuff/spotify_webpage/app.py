@@ -12,10 +12,14 @@ song_url = '';
 
 @app.route('/',methods=['GET', 'POST'])
 def base():
-	search_query = request.form.get('search')
-	if(search_query != '' and search_query != None):
-		response = sp.search(search_query)
-		return render_template('base.html.j2', results=response)
+	if(request.method == 'POST'):
+		if(request.form.get('input') != None):
+			search_query = request.form.get('input')
+			print(search_query)
+			response = sp.search(search_query)
+			return jsonify(response=response)
+		else:
+			return "NO"
 	return render_template('base.html.j2',genre='123')
 
 def url_for():

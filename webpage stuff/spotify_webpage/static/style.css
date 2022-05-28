@@ -33,7 +33,16 @@
     display: block;!important;
   }
 
-
+#submitbutton
+{
+  margin-left: 5px;
+  margin-top:-3px;
+  display:inline;
+}
+.inline-display
+{
+  display:inline-block;
+}
   /* body {
   position: absolute;
   display: -webkit-box;
