@@ -25,16 +25,13 @@ def search(name):
             return tracks
     except Exception as err:
         print(err)
-    return []
+    return "NOTFOUND"
 
 
 def getTrack(id):
     if(id != ''):
         results = sp.track(track_id=id)
     return []
-
-def wow():
-    print('wow')
 
 # getTrack('1ZM8toCOlnfBKJdvR8GqUq?si=3d4c58e98973402b')
 

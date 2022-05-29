@@ -35,50 +35,77 @@ function submitChoices()
   {
     document.getElementById('myUL').remove();
   }
-  var input = document.getElementById('input').value;
-  input = "input=" + input;
-  var xhttp = new XMLHttpRequest();
-  xhttp.open('POST', '/', true);
-  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-  var submit = document.getElementById("submitbutton");
-  submit.innerHTML = "Loading...";
-
-  xhttp.onreadystatechange = function() { //Call a function when the state changes.
-    if(xhttp.readyState == 4 && xhttp.status == 200) {
-          var response = JSON.parse(xhttp.responseText);
-          response = response['response'];
-          var listdiv = document.getElementById('listdiv');
-          var newlist = document.createElement("ul");
-          newlist.id = "myUL";
-          if (response == "NO")
-          {
-            var error = document.createElement("p");
-            error.innerHTML = "No songs found";
-
-          }
-          else {
-            for(let i=0; i<response.length;i++)
-            {
-              if(response[i]['preview_url'])
-              {
-                var temp = document.createElement("li");
-                var link  =  document.createElement("a");
-                temp.class = "close";
-                temp.setAttribute('data-dismiss', 'modal');
-                link.href = '#';
-                link.onclick = function () { getSongData(response[i]['preview_url'])} ;
-                link.innerHTML = response[i]['name'];
-                temp.appendChild(link);
-                newlist.appendChild(temp);
-              }
-            }
-            listdiv.appendChild(newlist);
-            submit.innerHTML = "Submit!";
-        }
-    }
+  if(document.getElementById('error')!= null)
+  {
+    document.getElementById('error').remove();
   }
-  xhttp.send(input);
+  var input = document.getElementById('input').value;
+  console.log(input);
+  var newlist = document.createElement("ul");
+  newlist.id = "myUL";
+  var listdiv = document.getElementById('listdiv');
 
+  if(input=="")
+  {
+    var nonefound = document.createElement("li");
+    nonefound.innerHTML = "You must enter text.";
+    newlist.appendChild(nonefound);
+    listdiv.appendChild(newlist);
+
+  }
+  else {
+    input = "input=" + input;
+    var xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/', true);
+    xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    var submit = document.getElementById("submitbutton");
+    submit.innerHTML = "Loading...";
+
+    xhttp.onreadystatechange = function() { //Call a function when the state changes.
+      if(xhttp.readyState == 4 && xhttp.status == 200) {
+            var response = JSON.parse(xhttp.responseText);
+            response = response['response'];
+            console.log(response);
+            if (response == "NOTFOUND" || response.length == 0) // thx to this person for the logic https://levelup.gitconnected.com/different-ways-to-check-if-an-object-is-empty-in-javascript-e1252d1c0b34
+            {
+              var error = document.createElement("p");
+              error.id = 'error';
+              error.style.color = "red";
+              error.innerHTML = "No songs found — check spelling.";
+              listdiv.appendChild(error);
+
+            }
+            if (response == "NO")
+            {
+              var error = document.createElement("p");
+              error.id = 'error';
+              error.style.color = "red";
+              error.innerHTML = "Error — what did you even do to get this message???";
+
+            }
+            else {
+              for(let i=0; i<response.length;i++)
+              {
+                if(response[i]['preview_url'])
+                {
+                  var temp = document.createElement("li");
+                  var link  =  document.createElement("a");
+                  temp.class = "close";
+                  temp.setAttribute('data-dismiss', 'modal');
+                  link.href = '#';
+                  link.onclick = function () { getSongData(response[i]['preview_url'])} ;
+                  link.innerHTML = response[i]['name'];
+                  temp.appendChild(link);
+                  newlist.appendChild(temp);
+                }
+              }
+              listdiv.appendChild(newlist);
+              submit.innerHTML = "Submit!";
+          }
+      }
+    }
+    xhttp.send(input);
+  }
 
 }
 
