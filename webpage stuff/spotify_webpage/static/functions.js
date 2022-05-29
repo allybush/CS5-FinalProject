@@ -21,7 +21,6 @@ function getSongData(url) {
           var response = JSON.parse(xhttp.responseText);
           inner.innerHTML = response["result"];
           div.appendChild(inner);
-          $("#spotifyModal").modal('hide');
           console.log("done");
       }
     }
@@ -64,6 +63,8 @@ function submitChoices()
               {
                 var temp = document.createElement("li");
                 var link  =  document.createElement("a");
+                temp.class = "close";
+                temp.setAttribute('data-dismiss', 'modal');
                 link.href = '#';
                 link.onclick = function () { getSongData(response[i]['preview_url'])} ;
                 link.innerHTML = response[i]['name'];
