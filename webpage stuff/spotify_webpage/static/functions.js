@@ -9,7 +9,7 @@ function getSongData(url) {
     var name = "url";
     var param = name + "=" + url;
     var xhttp = new XMLHttpRequest();
-
+    console.log(param);
     xhttp.open('POST', '/song', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
