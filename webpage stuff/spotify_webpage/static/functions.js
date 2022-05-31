@@ -50,8 +50,6 @@ function clearBelow()
 }
 function getSongData(url, artists, songname) {
     loadingGif();
-    console.log(url);
-    console.log('here!!');
     clearBelow();
 
     var name = "url";
@@ -59,6 +57,7 @@ function getSongData(url, artists, songname) {
     var xhttp = new XMLHttpRequest();
     console.log(param);
     xhttp.open('POST', '/song', true);
+
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     xhttp.onreadystatechange = function() { //Call a function when the state changes.
@@ -216,79 +215,4 @@ function submitChoices()
        }, false);
 
 }
-      jQuery(document).ready(function () {
-          var $ = jQuery;
-          var myRecorder = {
-              objects: {
-                  context: null,
-                  stream: null,
-                  recorder: null
-              },
-              init: function () {
-                  if (null === myRecorder.objects.context) {
-                      myRecorder.objects.context = new (
-                              window.AudioContext || window.webkitAudioContext
-                              );
-                  }
-              },
-              start: function () {
-                  var options = {audio: true, video: false};
-                  navigator.mediaDevices.getUserMedia(options).then(function (stream) {
-                      myRecorder.objects.stream = stream;
-                      myRecorder.objects.recorder = new Recorder(
-                              myRecorder.objects.context.createMediaStreamSource(stream),
-                              {numChannels: 1}
-                      );
-                      myRecorder.objects.recorder.record();
-                  }).catch(function (err) {});
-              },
-              stop: function (listObject) {
-                  if (null !== myRecorder.objects.stream) {
-                      myRecorder.objects.stream.getAudioTracks()[0].stop();
-                  }
-                  if (null !== myRecorder.objects.recorder) {
-                      myRecorder.objects.recorder.stop();
-
-                      if (null !== listObject
-                              && 'object' === typeof listObject
-                              && listObject.length > 0) {
-
-                          myRecorder.objects.recorder.exportWAV(function (blob) {
-                              var url = (window.URL || window.webkitURL)
-                                      .createObjectURL(blob);
-
-                              var audioObject = $('<audio controls></audio>')
-                                      .attr('src', url);
-
-                              var downloadObject = $('<a>Use</a>')
-                                      .attr('href', url)
-                                      .attr('download', new Date().toUTCString() + '.wav');
-
-                              var holderObject = $('<div class="row"></div>')
-                                      .append(audioObject)
-                                      .append(downloadObject);
-
-                              listObject.append(holderObject);
-                          });
-                      }
-                  }
-              }
-          };
-
-          var listObject = $('[data-role="recordings"]');
-
-          $('[data-role="controls"] > button').click(function () {
-
-              myRecorder.init();
-
-              var buttonState = !!$(this).attr('data-recording');
-
-              if (!buttonState) {
-                  $(this).attr('data-recording', 'true');
-                  myRecorder.start();
-              } else {
-                  $(this).attr('data-recording', '');
-                  myRecorder.stop(listObject);
-              }
-          });
-      });
+  

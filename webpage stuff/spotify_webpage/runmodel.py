@@ -19,12 +19,15 @@ import io  # allows us to temporarily store the image to access with PIL
 
 def run(path):
     # files
+    prepath = "public/spotify_webpage/actual_webpage/"
     response = requests.get(path)
-    open("temp.mp3", "wb").write(response.content)
+    src = prepath + "temp.mp3"
 
-    src = "temp.mp3" #replace with any file you want :D
+    open(src, "wb").write(response.content)
 
-    dst = 'test.wav'
+     #replace with any file you want :D
+
+    dst = prepath + "test.wav"
     # convert format to mp3
 
     # https://pythonbasics.org/convert-mp3-to-wav/
@@ -59,7 +62,7 @@ def run(path):
 
         img = librosa.display.specshow(S_dB, hop_length=512)
 
-        savedimage = "static/spectrogram.png"
+        savedimage = prepath + "static/spectrogram.png"
 
         # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
 
@@ -70,7 +73,7 @@ def run(path):
         genres = np.array(["Classical", "Country", "Rap", "Jazz", "Metal", "Pop", "Rock"])
 
 
-        model = keras.models.load_model('model')
+        model = keras.models.load_model(prepath + 'model')
         # thanks to this dude for helping with converting an image to a tensor https://www.tutorialspoint.com/how-to-convert-an-image-to-a-pytorch-tensor
 
         image = Image.open(savedimage)
