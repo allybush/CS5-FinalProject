@@ -57,7 +57,7 @@
 
         </div>
 
-        <button class="navbar-toggler" type="button" class="btn btn-primary" data-toggle="modal" data-target="#genreModal">GENRE</span></button>
+        <button id= "genrebutton" class="navbar-toggler" type="button" class="btn btn-primary" data-toggle="modal" data-target="#genreModal"> See Genre Results </span></button>
 
 
         <!-- Spotify Modal -->
@@ -95,6 +95,7 @@
               <div class="modal-body">
                 {% include 'random.html.j2' %}
               </div>
+              <div id='player1'></div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
@@ -142,6 +143,7 @@
                 {% include 'genre.html.j2' %}
               </div>
               <div class="modal-footer">
+                <a id="more_songs" href = "/" class="btn btn-success mr-auto">Submit Another Song! </a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>

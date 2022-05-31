@@ -69,7 +69,7 @@ def run(path):
 
         # starting to run it on the model
 
-        genres = np.array(["classical", "country", "rap", "jazz", "metal", "pop", "rock"])
+        genres = np.array(["Classical", "Country", "Rap", "Jazz", "Metal", "Pop", "Rock"])
 
 
         model = keras.models.load_model('model')

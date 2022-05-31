@@ -1,10 +1,16 @@
-function getSongData(url) {
+function getSongData(url, artists, songname) {
+    var loadingdiv = document.getElementById("decision");
+    var loadinggif = document.createElement("img");
+    loadinggif.src = "static/loading.gif";
+    loadinggif.style.height = "150px";
+    loadinggif.style.margin = "auto";
+    loadingdiv.appendChild(loadinggif);
     console.log(url);
     console.log('here!!');
 
-    if(document.getElementById('innerdecision') != null)
+    if(document.getElementById('genrebutton').style.display != "none")
     {
-      document.getElementById('innerdecision').remove();
+      document.getElementById('genrebutton').style.display = "none";
     }
     var name = "url";
     var param = name + "=" + url;
@@ -15,13 +21,14 @@ function getSongData(url) {
 
     xhttp.onreadystatechange = function() { //Call a function when the state changes.
       if(xhttp.readyState == 4 && xhttp.status == 200) {
-          var div = document.getElementById("decision");
-          var inner = document.createElement("p");
-          inner.id = "innerdecision";
           var response = JSON.parse(xhttp.responseText);
-          inner.innerHTML = response["result"];
-          div.appendChild(inner);
-          console.log("done");
+          response = response['result'];
+          document.getElementById("firstrow").innerHTML = songname + " by " + artists;
+          document.getElementById("secondrow").innerHTML = "was classified as \"" + response + "\"";
+          var imagesrc = "/static/genre_img/" + response + ".jpeg";
+          document.getElementById("genre_img").src = imagesrc;
+          loadinggif.remove();
+          document.getElementById("genrebutton").style.display = "block";
       }
     }
     xhttp.send(param);
@@ -93,8 +100,20 @@ function submitChoices()
                   temp.class = "close";
                   temp.setAttribute('data-dismiss', 'modal');
                   link.href = '#';
-                  link.onclick = function () { getSongData(response[i]['preview_url'])} ;
-                  link.innerHTML = response[i]['name'];
+                  if (response[i].hasOwnProperty('artists') && response[i]['artists'].length >0 )
+                  {
+                    var artistname = response[i]['artists'][0]['name'];
+                    for (let x = 1; x < response[i]['artists'].length; x++)
+                    {
+                      artistname += ", " + response[i]['artists'][x]['name'];
+                    }
+                  }
+                  else
+                  {
+                    var artistname = "Unidentified Artist";
+                  }
+                  link.onclick = function () {getSongData(response[i]['preview_url'], artistname, response[i]['name'])} ;
+                  link.innerHTML = response[i]['name'] + " — " + artistname;
                   temp.appendChild(link);
                   newlist.appendChild(temp);
                 }
@@ -121,11 +140,18 @@ function submitChoices()
     x.innerText = "Record Your Own Audio";
   }
   }
+  function stop(){
+    var x = document.getElementById("player").innerHTML="<embed hidden=\"true\" loop=\"false\" />";
+    var y = document.getElementById("link");
+    y.style.display = 'none';
+  }
 
   function random(){
-       var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
-       document.getElementById("player").innerHTML="<audio src=\""+soundFile+"\" type=\"audio/wav\" id=\"embed\" loop=\"false\" /> Audio";
-  }
+     var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
+     document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\"  id=\"embed\" hidden=\"false\" loop=\"false\" />";
+     document.getElementById("player1").innerHTML= "<a href=\""+soundFile+"\" download=\""+soundFile+"\" id=\"link\"  />";
+     document.getElementById("link").innerHTML += "<button class='btn btn-secondary' onclick='stop();'>Use</button>";
+}
       jQuery(document).ready(function () {
           var $ = jQuery;
           var myRecorder = {
@@ -153,12 +179,6 @@ function submitChoices()
                   }).catch(function (err) {});
               },
               stop: function (listObject) {
-                  var z = document.getElementById("exit");
-                  z.style.display = "block";
-                  var y = document.getElementById("use");
-                  y.style.display = "block";
-                  var t = document.getElementById("text");
-                  t.style.display = "block";
                   if (null !== myRecorder.objects.stream) {
                       myRecorder.objects.stream.getAudioTracks()[0].stop();
                   }
@@ -176,8 +196,9 @@ function submitChoices()
                               var audioObject = $('<audio controls></audio>')
                                       .attr('src', url);
 
-                              var downloadObject = $('<a>&#9660;</a>')
+                              var downloadObject = $('<a>Use</a>')
                                       .attr('href', url)
+                                      .attr('download', new Date().toUTCString() + '.wav');
 
 
                               var holderObject = $('<div class="row"></div>')

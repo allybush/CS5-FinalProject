@@ -1,3 +1,31 @@
+.marginleft
+{
+  margin-left: 10px;
+}
+#genrebutton
+{
+  display: none;
+  background-color: #4d74eb;
+  margin:auto;
+  color:white;
+  height: 120px;
+  width: 300px;
+  font-size: 30px;
+}
+#genrebutton:hover
+{
+  display: none;
+  background-color: #346beb;
+  margin:auto;
+  background-color: #88a2f2;
+  color: #4d74eb;
+
+}
+#decision
+{
+  margin:auto;
+  width:200px;
+}
 #myInput {
     background-image: url('/css/searchicon.png');
     background-position: 10px 12px;

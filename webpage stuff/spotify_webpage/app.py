@@ -3,6 +3,7 @@ import requests
 
 import runmodel
 import spotify as sp
+import spotipy
 app = Flask(__name__) #this has 2 underscores on each side
 
 
@@ -20,14 +21,10 @@ def base():
 			return jsonify(response=response)
 		else:
 			return "NO"
-	song_name = 'Search and Destroy'
-	artist_name = 'the Stooges'
-	genre = 'rock'
-	path = '/genre_img/'+ genre +'.jpeg'
-	return render_template('base.html.j2',song_name=song_name,artist_name=artist_name,genre=genre,path=path)
+	return render_template('base.html.j2',genre='123')
 
-# def url_for():
-# 	print('hiii')
+def url_for():
+	print('hiii')
 
 @app.route('/song', methods=['POST'])
 def song():
@@ -35,7 +32,6 @@ def song():
 	address = request.form.get('url')
 	if(address!= None):
 		result = runmodel.run(address)
-		print(result)
 		return jsonify(result=result)
 	else:
 		return "Could not find URL for song"
