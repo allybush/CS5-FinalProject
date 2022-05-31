@@ -193,6 +193,10 @@ function submitChoices()
   }
 
   function random(){
+    if(document.getElementById("newplayer"))
+    {
+      document.getElementById("newplayer").remove();
+    }
      var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
      document.getElementById("player1").innerHTML= "<a href=\""+soundFile+"\" id=\"link\"  />";
      document.getElementById("link").innerHTML += "<button class='btn btn-secondary' id=\"usebutton\" onclick='getRandom();' data-dismiss = 'modal'>Use</button>";
