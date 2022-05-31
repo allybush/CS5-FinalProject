@@ -1,6 +1,7 @@
 function getRandom()
 {
   document.getElementById("newplayer").pause();
+  clearBelow();
   loadingGif();
   var path = document.getElementById("link").href;
   path = "path=" + path;
@@ -42,11 +43,16 @@ function removeGif()
   document.getElementById("loadinggif").remove();
 }
 
+function clearBelow()
+{
+  document.getElementById('genrebutton').style.display = "none";
+  document.getElementById('spectrogram').style.display = "none";
+}
 function getSongData(url, artists, songname) {
     loadingGif();
     console.log(url);
     console.log('here!!');
-    document.getElementById('genrebutton').style.display = "none";
+    clearBelow();
 
     var name = "url";
     var param = name + "=" + url;
@@ -60,6 +66,7 @@ function getSongData(url, artists, songname) {
           var response = JSON.parse(xhttp.responseText);
           response = response['result'];
           document.getElementById("firstrow").innerHTML = songname + " by " + artists;
+          console.log(artists);
           document.getElementById("secondrow").innerHTML = "was classified as \"" + response + "\"";
           var imagesrc = "/static/genre_img/" + response + ".jpeg";
           document.getElementById("genre_img").src = imagesrc;
@@ -128,6 +135,7 @@ function submitChoices()
 
             }
             else {
+              artistname = [];
               for(let i=0; i<response.length;i++)
               {
                 if(response[i]['preview_url'])
@@ -137,22 +145,28 @@ function submitChoices()
                   temp.class = "close";
                   temp.setAttribute('data-dismiss', 'modal');
                   link.href = '#';
-                  if (response[i].hasOwnProperty('artists') && response[i]['artists'].length >0 )
+                  if (response[i].hasOwnProperty('artists') && response[i]['artists'].length > 0 )
                   {
-                    var artistname = response[i]['artists'][0]['name'];
+                    tempartist = response[i]['artists'][0]['name'];
                     for (let x = 1; x < response[i]['artists'].length; x++)
                     {
-                      artistname += ", " + response[i]['artists'][x]['name'];
+                      tempartist += ", " + response[i]['artists'][x]['name'];
                     }
+                    artistname.push(tempartist);
                   }
                   else
                   {
-                    var artistname = "Unidentified Artist";
+                    artistname.push("Unidentified Artist");
                   }
-                  link.onclick = function () {getSongData(response[i]['preview_url'], artistname, response[i]['name'])} ;
-                  link.innerHTML = response[i]['name'] + " — " + artistname;
+                  link.onclick = function () {getSongData(response[i]['preview_url'], artistname[i], response[i]['name'])};
+                  console.log(artistname);
+                  link.innerHTML = response[i]['name'] + " — " + artistname[i];
                   temp.appendChild(link);
                   newlist.appendChild(temp);
+                }
+                else
+                {
+                  artistname.push("");
                 }
               }
               listdiv.appendChild(newlist);
