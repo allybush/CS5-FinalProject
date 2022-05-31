@@ -1,5 +1,6 @@
 function getRandom()
 {
+  document.getElementById("newplayer").pause();
   loadingGif();
   var path = document.getElementById("link").href;
   path = "path=" + path;
@@ -176,23 +177,26 @@ function submitChoices()
     x.innerText = "Record Your Own Audio";
   }
   }
-  function stop(){
-    var x = document.getElementById("player").innerHTML="<embed hidden=\"true\" loop=\"false\" />";
-    var y = document.getElementById("link");
-
-  }
 
   function random(){
      var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
-     document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\"  id=\"embed\" hidden=\"false\" loop=\"false\" />";
      document.getElementById("player1").innerHTML= "<a href=\""+soundFile+"\" id=\"link\"  />";
-     document.getElementById("link").innerHTML += "<button class='btn btn-secondary' id=\"usebutton\" onclick='stop(); getRandom();' data-dismiss = 'modal'>Use</button>";
-     document.getElementById("usebutton").style.marginLeft = "210px";
-     document.getElementById("usebutton").style.marginBottom = "10px";
-    document.getElementById("usebutton").style.width = "60px";
+     document.getElementById("link").innerHTML += "<button class='btn btn-secondary' id=\"usebutton\" onclick='getRandom();' data-dismiss = 'modal'>Use</button>";
+     var usebutton =  document.getElementById("usebutton");
+     usebutton.style.marginLeft = "210px";
+     usebutton.style.marginBottom = "10px";
+     usebutton.style.width = "60px";
+     var newplayer = document.createElement("audio");
+     // thanks to this person for the help https://stackoverflow.com/questions/37735208/create-audio-element-dynamically-in-javascript
+     newplayer.id =  "newplayer";
+     newplayer.controls = 'controls';
+     newplayer.src =  soundFile;
+     document.getElementById('player').appendChild(newplayer);
+     // https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault thanks for this one mozilla!!
      document.querySelector("#usebutton").addEventListener("click", function(event) {
          event.preventDefault();
        }, false);
+
 }
       jQuery(document).ready(function () {
           var $ = jQuery;
