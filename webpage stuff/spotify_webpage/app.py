@@ -23,15 +23,16 @@ def base():
 			return "NO"
 	return render_template('base.html.j2',genre='123')
 
-def url_for():
-	print('hiii')
-
 @app.route('/song', methods=['POST'])
 def song():
 	print(request.form.get('url'))
 	address = request.form.get('url')
 	if(address!= None):
 		result = runmodel.run(address)
+		return jsonify(result=result)
+	path = request.form.get('path')
+	if(path!= None):
+		result = runmodel.run(path)
 		return jsonify(result=result)
 	else:
 		return "Could not find URL for song"

@@ -1,17 +1,54 @@
+function getRandom()
+{
+  loadingGif();
+  var path = document.getElementById("link").href;
+  path = "path=" + path;
+  var xhttp = new XMLHttpRequest();
+  xhttp.open('POST', '/song', true);
+  xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  xhttp.onreadystatechange = function() { //Call a function when the state changes.
+    if(xhttp.readyState == 4 && xhttp.status == 200) {
+        var response = JSON.parse(xhttp.responseText);
+        response = response['result'];
+        document.getElementById("firstrow").innerHTML = "Your random audio was classified as \"" + response + "\"";
+        document.getElementById("secondrow").innerHTML = "";
+        var imagesrc = "/static/genre_img/" + response + ".jpeg";
+        document.getElementById("genre_img").src = imagesrc;
+        document.getElementById("genrebutton").style.display = "block";
+        removeGif();
+    }
+  }
+  xhttp.send(path);
+
+}
+function removeGenre()
+{
+  document.getElementById('genrebutton').style.display = "none";
+}
+
+function loadingGif()
+{
+  var loadingdiv = document.getElementById("decision");
+  var loadinggif = document.createElement("img");
+  loadinggif.id = "loadinggif";
+  loadinggif.src = "static/loading.gif";
+  loadinggif.style.height = "150px";
+  loadinggif.style.margin = "auto";
+  loadingdiv.appendChild(loadinggif);
+}
+
+function removeGif()
+{
+  document.getElementById("loadinggif").remove();
+}
+
 function getSongData(url, artists, songname) {
-    var loadingdiv = document.getElementById("decision");
-    var loadinggif = document.createElement("img");
-    loadinggif.src = "static/loading.gif";
-    loadinggif.style.height = "150px";
-    loadinggif.style.margin = "auto";
-    loadingdiv.appendChild(loadinggif);
+    loadingGif();
     console.log(url);
     console.log('here!!');
+    document.getElementById('genrebutton').style.display = "none";
 
-    if(document.getElementById('genrebutton').style.display != "none")
-    {
-      document.getElementById('genrebutton').style.display = "none";
-    }
     var name = "url";
     var param = name + "=" + url;
     var xhttp = new XMLHttpRequest();
@@ -27,7 +64,6 @@ function getSongData(url, artists, songname) {
           document.getElementById("secondrow").innerHTML = "was classified as \"" + response + "\"";
           var imagesrc = "/static/genre_img/" + response + ".jpeg";
           document.getElementById("genre_img").src = imagesrc;
-          loadinggif.remove();
           document.getElementById("genrebutton").style.display = "block";
       }
     }
@@ -143,14 +179,20 @@ function submitChoices()
   function stop(){
     var x = document.getElementById("player").innerHTML="<embed hidden=\"true\" loop=\"false\" />";
     var y = document.getElementById("link");
-    y.style.display = 'none';
+
   }
 
   function random(){
      var soundFile = "static/songs/"+Math.round(Math.random() * (50 - 1) + 1)+".wav";
      document.getElementById("player").innerHTML="<embed src=\""+soundFile+"\"  id=\"embed\" hidden=\"false\" loop=\"false\" />";
-     document.getElementById("player1").innerHTML= "<a href=\""+soundFile+"\" download=\""+soundFile+"\" id=\"link\"  />";
-     document.getElementById("link").innerHTML += "<button class='btn btn-secondary' onclick='stop();'>Use</button>";
+     document.getElementById("player1").innerHTML= "<a href=\""+soundFile+"\" id=\"link\"  />";
+     document.getElementById("link").innerHTML += "<button class='btn btn-secondary' id=\"usebutton\" onclick='stop(); getRandom();' data-dismiss = 'modal'>Use</button>";
+     document.getElementById("usebutton").style.marginLeft = "210px";
+     document.getElementById("usebutton").style.marginBottom = "10px";
+    document.getElementById("usebutton").style.width = "60px";
+     document.querySelector("#usebutton").addEventListener("click", function(event) {
+         event.preventDefault();
+       }, false);
 }
       jQuery(document).ready(function () {
           var $ = jQuery;
