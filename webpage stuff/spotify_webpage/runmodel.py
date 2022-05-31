@@ -4,8 +4,6 @@ import tensorflow as tf
 import numpy as np
 import requests
 
-import torchvision
-import torch
 from PIL import Image
 
 import matplotlib.pyplot as plt
@@ -44,7 +42,7 @@ def run(path):
 
     duration = len(x)/sr
 
-    if duration > 29:
+    if duration > 27:
         x, _ = librosa.effects.trim(x)
         x = x[0:30*sr]
         x = x[0:431*512]
@@ -90,4 +88,4 @@ def run(path):
         return predictions
     else:
         print("Your clip is only " + str(duration) + " seconds. Make sure it's more than 30 seconds!")
-        return "no"
+        return "Undefined Class— clip was too short to get a good reading."

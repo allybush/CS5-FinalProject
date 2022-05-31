@@ -15,7 +15,7 @@ function getRandom()
         response = response['result'];
         document.getElementById("firstrow").innerHTML = "Your random audio was classified as \"" + response + "\"";
         document.getElementById("secondrow").innerHTML = "";
-        var imagesrc = "/static/genre_img/" + response + ".jpeg";
+        var imagesrc = "static/genre_img/" + response + ".jpeg";
         document.getElementById("genre_img").src = imagesrc;
         document.getElementById("genrebutton").style.display = "block";
         document.getElementById("spectrogram").style.display = "block";
@@ -68,7 +68,7 @@ function getSongData(url, artists, songname) {
           document.getElementById("firstrow").innerHTML = songname + " by " + artists;
           console.log(artists);
           document.getElementById("secondrow").innerHTML = "was classified as \"" + response + "\"";
-          var imagesrc = "/static/genre_img/" + response + ".jpeg";
+          var imagesrc = "static/genre_img/" + response + ".jpeg";
           document.getElementById("genre_img").src = imagesrc;
           document.getElementById("spectrogram").style.display = "block";
           removeGif();
@@ -107,7 +107,7 @@ function submitChoices()
   else {
     input = "input=" + input;
     var xhttp = new XMLHttpRequest();
-    xhttp.open('POST', '/', true);
+    xhttp.open('POST', '.', true);
     xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     var submit = document.getElementById("submitbutton");
     submit.innerHTML = "Loading...";
@@ -263,7 +263,6 @@ function submitChoices()
                               var downloadObject = $('<a>Use</a>')
                                       .attr('href', url)
                                       .attr('download', new Date().toUTCString() + '.wav');
-
 
                               var holderObject = $('<div class="row"></div>')
                                       .append(audioObject)
