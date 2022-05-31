@@ -45,12 +45,6 @@
               <p>Generate a random song to be used for genre classification.</p>
               <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#randomModal">Start &raquo;</a></p>
             </div>
-            <div class="col-md-4">
-              <h2>Record Yourself</h2>
-              <p>Record yourself to be used for genre classification.</p>
-              <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#recordModal">Start &raquo;</a></p>
-            </div>
-          </div>
 
           <hr>
 
@@ -106,27 +100,6 @@
           </div>
         </div>
 
-
-        <!-- Record Modal -->
-        <div class="modal fade" id="recordModal" tabindex="-1" role="dialog" aria-labelledby="recordModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="recordModalLabel">Record Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                {% include 'record.html.j2' %}
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
 
 
         <!-- Genre Modal -->
