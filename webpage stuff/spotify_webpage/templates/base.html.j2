@@ -56,6 +56,9 @@
 
         </div>
 
+        <div id="decision"> </div>
+        <img src= "static/spectrogram.png" alt = "spectrogram" id="spectrogram">
+
         <button id= "genrebutton" class="navbar-toggler" type="button" class="btn btn-primary" data-toggle="modal" data-target="#genreModal"> See Genre Results </span></button>
 
 
@@ -126,8 +129,6 @@
         </div>
 
 
-
-
         <!-- Genre Modal -->
         <div class="modal fade" id="genreModal" tabindex="-1" role="dialog" aria-labelledby="genreModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -143,13 +144,11 @@
               </div>
               <div class="modal-footer">
                 <a id="more_songs" href = "/" class="btn btn-success mr-auto">Submit Another Song! </a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick = "removeGenre();">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
         </div>
-
-<div id="decision"> </div>
 
       </main>
 

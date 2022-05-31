@@ -61,7 +61,7 @@ def run(path):
 
         img = librosa.display.specshow(S_dB, hop_length=512)
 
-        savedimage = io.BytesIO()
+        savedimage = "static/spectrogram.png"
 
         # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
 
@@ -86,7 +86,7 @@ def run(path):
         predictions = np.argmax(predictions)
         predictions = genres[predictions]
 
-        # savedimage.close()
+
         return predictions
     else:
         print("Your clip is only " + str(duration) + " seconds. Make sure it's more than 30 seconds!")

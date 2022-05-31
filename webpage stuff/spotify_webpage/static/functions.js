@@ -17,16 +17,14 @@ function getRandom()
         var imagesrc = "/static/genre_img/" + response + ".jpeg";
         document.getElementById("genre_img").src = imagesrc;
         document.getElementById("genrebutton").style.display = "block";
+        document.getElementById("spectrogram").style.display = "block";
         removeGif();
     }
   }
   xhttp.send(path);
 
 }
-function removeGenre()
-{
-  document.getElementById('genrebutton').style.display = "none";
-}
+
 
 function loadingGif()
 {
@@ -65,6 +63,8 @@ function getSongData(url, artists, songname) {
           document.getElementById("secondrow").innerHTML = "was classified as \"" + response + "\"";
           var imagesrc = "/static/genre_img/" + response + ".jpeg";
           document.getElementById("genre_img").src = imagesrc;
+          document.getElementById("spectrogram").style.display = "block";
+          removeGif();
           document.getElementById("genrebutton").style.display = "block";
       }
     }
