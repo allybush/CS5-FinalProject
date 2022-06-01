@@ -107,7 +107,7 @@ for y in range(len(genresplaylist)):
                         img = librosa.display.specshow(S_dB, n_fft=1024, hop_length=512)
 
                         # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
-
+                        img = img.convert("RGB")
                         plt.savefig(path, format='png', bbox_inches='tight', pad_inches=0)
 
 

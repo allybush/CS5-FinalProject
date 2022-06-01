@@ -71,18 +71,18 @@ if duration > 30:
     # thanks to this dude for helping with converting an image to a tensor https://www.tutorialspoint.com/how-to-convert-an-image-to-a-pytorch-tensor
 
     image = Image.open(savedimage)
-    image.show()
-    image = tf.convert_to_tensor(image, dtype=tf.float32)
-    image = np.array([image])
+    image = image.convert('RGB')
+    image = np.array(image)
+    image = np.reshape(image,(1,231,348,3))
+    #  ^^ converts single image to a batch.
 
-    # convert single image to a batch.
-
+    #creates prediction
     predictions = model.predict(image)
     predictions = np.argmax(predictions)
+    #takes most likely outcome from array of predictions
     predictions = genres[predictions]
 
-    print(predictions)
 
-    savedimage.close()
+    return predictions
 else:
     print("Your clip is only " + str(duration) + " seconds. Make sure it's more than 30 seconds!")
