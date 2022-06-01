@@ -1,3 +1,6 @@
+"""
+To use: change 'model' in line 80 to wherever you saved the model in trainmodel.py.
+"""
 #runs model on url link we give to it
 import keras.models
 import keras.preprocessing
