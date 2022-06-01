@@ -8,15 +8,15 @@ savemodelpath = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/
 datapath = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata"
 
 # preprocessing (finds it in the data directory)
-training = tf.keras.preprocessing.image_dataset_from_directory(datapath, labels='inferred', label_mode='categorical', image_size=(231,348), color_mode="rgba", validation_split=0.9, subset='training', seed=0)
+training = tf.keras.preprocessing.image_dataset_from_directory(datapath, labels='inferred', label_mode='categorical', image_size=(231,348), color_mode="rgb", validation_split=0.9, subset='training', seed=0)
 
-test = tf.keras.preprocessing.image_dataset_from_directory(datapath, labels='inferred', label_mode='categorical', image_size=(231, 348), color_mode="rgba", validation_split=0.1, subset='validation', seed=0)
+test = tf.keras.preprocessing.image_dataset_from_directory(datapath, labels='inferred', label_mode='categorical', image_size=(231, 348), color_mode="rgb", validation_split=0.1, subset='validation', seed=0)
 
 # create model
 model = tf.keras.models.Sequential()
 
 # add model layers
-model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(231, 348, 4)))
+model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(231, 348, 3)))
 model.add(keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same'))
 model.add(keras.layers.BatchNormalization())
 
