@@ -1,3 +1,4 @@
+#runs model on url link we give to it
 import keras.models
 import keras.preprocessing
 import tensorflow as tf
@@ -19,15 +20,15 @@ import io  # allows us to temporarily store the image to access with PIL
 
 def run(path):
     # files
-    prepath = "public/spotify_webpage/actual_webpage/"
+
     response = requests.get(path)
-    src = prepath + "temp.mp3"
+    src = "temp.mp3"
 
     open(src, "wb").write(response.content)
 
      #replace with any file you want :D
 
-    dst = prepath + "test.wav"
+    dst = "test.wav"
     # convert format to mp3
 
     # https://pythonbasics.org/convert-mp3-to-wav/
@@ -46,13 +47,13 @@ def run(path):
     duration = len(x)/sr
 
     if duration > 27:
-        x, _ = librosa.effects.trim(x)
+        #removes silence
+        x, z = librosa.effects.trim(x)
         x = x[0:30*sr]
         x = x[0:431*512]
-
         # convert to spectrogram section
 
-        spect = librosa.feature.melspectrogram(x, sr=sr, n_mels=288, hop_length=512)
+        spect = librosa.feature.melspectrogram(x, hop_length=512)
         S_dB = librosa.power_to_db(spect, ref=np.max)
 
         # saving as an image of 432 x 288 dimensions
@@ -62,29 +63,30 @@ def run(path):
 
         img = librosa.display.specshow(S_dB, hop_length=512)
 
-        savedimage = prepath + "static/spectrogram.png"
+        savedimage = "static/spectrogram.png"
 
         # https://www.tutorialspoint.com/how-to-convert-matplotlib-figure-to-pil-image-object
 
         plt.savefig(savedimage, format='png', bbox_inches='tight', pad_inches=0)
 
+
         # starting to run it on the model
 
         genres = np.array(["Classical", "Country", "Rap", "Jazz", "Metal", "Pop", "Rock"])
 
-
-        model = keras.models.load_model(prepath + 'model')
+        model = keras.models.load_model('model')
         # thanks to this dude for helping with converting an image to a tensor https://www.tutorialspoint.com/how-to-convert-an-image-to-a-pytorch-tensor
 
         image = Image.open(savedimage)
         image = image.convert('RGB')
         image = np.array(image)
         image = np.reshape(image,(1,231,348,3))
+        #  ^^ converts single image to a batch.
 
-        # convert single image to a batch.
-
+        #creates prediction
         predictions = model.predict(image)
         predictions = np.argmax(predictions)
+        #takes most likely outcome from array of predictions
         predictions = genres[predictions]
 
 

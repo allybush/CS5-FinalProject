@@ -6,15 +6,16 @@
         <div class="inline-display">
 
         <form method="POST" onsubmit="return false;">
+
 <!-- thx to this person for helping me stop submit https://stackoverflow.com/questions/8664486/javascript-code-to-stop-form-submission-->
 
-
+<!--user enters their song here, calls the function that submits it -->
         <input  id="input" placeholder="Search Song/Artist" name="search" type="search" id="form1" class="form-control" />
         </form>
         </div>
         <button id = "submitbutton" class="btn btn-primary" onclick = "submitChoices();"> Submit! </button>
 
-
+<!-- this div is so functions.js can insert a list of results into here-->
         <div id="listdiv"> </div>
 
 

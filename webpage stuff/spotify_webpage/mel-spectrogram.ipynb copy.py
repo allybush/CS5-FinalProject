@@ -1,3 +1,4 @@
+#this file is for creating dataset—we never actually use it in website
 import keras.preprocessing
 import tensorflow as tf
 import numpy as np
@@ -30,6 +31,7 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 genres = ["classical", "country", "rap", "jazz", "metal", "pop", "rock"]
 
+#arrays of playlist links
 jazz = ["https://open.spotify.com/playlist/37i9dQZF1DWV7EzJMK2FUI?si=7890a79f446b4d3b", "https://open.spotify.com/playlist/37i9dQZF1DWW2c0C8Vb2IR?si=9a21e882cd574343", "https://open.spotify.com/playlist/37i9dQZF1DXbITWG1ZJKYt?si=500f86c4fe104aee", "https://open.spotify.com/playlist/37i9dQZF1DWSSSls9eK29h?si=c8f409839cab4507", "https://open.spotify.com/playlist/37i9dQZF1DX5S7hzwhDSyV?si=d9d73127dd564807", "https://open.spotify.com/playlist/37i9dQZF1DWSSSls9eK29h?si=261917c0d1854138", "https://open.spotify.com/playlist/37i9dQZF1DX6KyCRJzZneq?si=152d660dca1b417e", "https://open.spotify.com/playlist/37i9dQZF1DWTKezOYpetsD?si=72c5881a44f8434e", "https://open.spotify.com/playlist/37i9dQZF1DWV7EzJMK2FUI?si=5dc42fde6e7748f4"]
 classical = ["https://open.spotify.com/playlist/37i9dQZF1DX2XWJkYVfE4v?si=8c0cd483a33b4324", "https://open.spotify.com/playlist/37i9dQZF1DX2XWJkYVfE4v?si=0c7b6e78c8984f56", "https://open.spotify.com/playlist/090o9Mrm7KaA3caCAIxb6A?si=307a3fea83334f33", "https://open.spotify.com/playlist/1h0CEZCm6IbFTbxThn6Xcs?si=b4378a85f1944228", "https://open.spotify.com/playlist/37i9dQZF1DWWEJlAGA9gs0?si=eab76a4f7f344fa9", "https://open.spotify.com/playlist/090o9Mrm7KaA3caCAIxb6A?si=b156ee8adaa34f5d", "https://open.spotify.com/playlist/37i9dQZF1DX4s3V2rTswzO?si=33d990b70c424e77", "https://open.spotify.com/playlist/37i9dQZF1DWV0gynK7G6pD?si=fccbbdad495f4c8e"]
 pop = ["https://open.spotify.com/playlist/37i9dQZF1DX2Nc3B70tvx0?si=4cdb3025465d48d0", "https://open.spotify.com/playlist/37i9dQZF1DXdbXrPNafg9d?si=1c13a3176f204868", "https://open.spotify.com/playlist/37i9dQZF1DX8uc99HoZBLU?si=2964a2daf528491b", "https://open.spotify.com/playlist/37i9dQZF1DX59NCqCqJtoH?si=115c77c8a4f54e54", "https://open.spotify.com/playlist/37i9dQZF1DXdTCdwCKzXwo?si=d59f0b71a1e64a51", "https://open.spotify.com/playlist/37i9dQZF1DXa2PvUpywmrr?si=f30b7d866f1a4516", "https://open.spotify.com/playlist/37i9dQZF1DWXti3N4Wp5xy?si=c47f20d30fac427f", "https://open.spotify.com/playlist/37i9dQZF1DX0MLFaUdXnjA?si=073635a5f5574131", "https://open.spotify.com/playlist/37i9dQZF1DX0kbJZpiYdZl?si=b2abd92458414c2f", "https://open.spotify.com/playlist/37i9dQZF1DWSPMbB1kcXmo?si=60ff2ee81c4841cd"]
@@ -38,19 +40,23 @@ rap = ["https://open.spotify.com/playlist/0DoorcbBIsa7J6NW9FlLio?si=d90cf9a48f69
 rock = ["https://open.spotify.com/playlist/33VgmASznZ4gmwNrbhkD9m?si=a6df751c3fa44a1a", "https://open.spotify.com/playlist/5BygwTQ3OrbiwVsQhXFHMz?si=fa9e7af2aaae4418", "https://open.spotify.com/playlist/37i9dQZF1DWXRqgorJj26U?si=023caccfca29443d", "https://open.spotify.com/playlist/37i9dQZF1DWWGFQLoP9qlv?si=f16110e55b3240c5", "https://open.spotify.com/playlist/37i9dQZF1DX9wa6XirBPv8?si=835b6b946d7a4508", "https://open.spotify.com/playlist/37i9dQZF1DX82Zzp6AKx64?si=acb684bb917f4298"]
 country = ["https://open.spotify.com/playlist/37i9dQZF1DX13kFuGnInkY?si=c98e787527c94a9b", "https://open.spotify.com/playlist/37i9dQZF1DWXepGEFFmQXJ?si=b3a1da3058e944f1", "https://open.spotify.com/playlist/37i9dQZF1DWYnwbYQ5HnZU?si=a5c0fed12bb7438a", "https://open.spotify.com/playlist/37i9dQZF1EQmPV0vrce2QZ?si=240d75254aa54ea2", "https://open.spotify.com/playlist/37i9dQZF1DX1lVhptIYRda?si=e474d00183764905", "https://open.spotify.com/playlist/37i9dQZF1DXdxUH6sNtcDe?si=69b089c9899d4811", "https://open.spotify.com/playlist/37i9dQZF1DWVFzWmxRnRJH?si=1c90eb52e02245c7"]
 
-
+#combines all arrays into super array.
 genresplaylist = [classical, country, rap, jazz, metal, pop, rock]
 
-
+#for each genre
 for y in range(len(genresplaylist)):
     count = 0
+    #goes thru each playlist link and requests the songs
     for x in range(len(genresplaylist[y])):
         playlistname = genresplaylist[y][x]
         playlistresults = sp.playlist(playlistname)
         length = len(playlistresults['tracks']['items'])
+        #takes tracks from each playlist and converts to spectrogram
         for z in range(length):
             path = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata/" + genres[y] + "/" + genres[y]
+            #try/except to catch errors (occasionally happened during testing, so created try/except)
             try:
+                #checks if there's a 30 second preview for the song and then converts to spectrogram
                 songurl = playlistresults['tracks']['items'][z]['track']['preview_url']
                 if songurl != None:
 
@@ -63,12 +69,13 @@ for y in range(len(genresplaylist)):
                     sound = AudioSegment.from_file("temp.mp3")
                     sound.export(dst, format="wav", bitrate="16k")
 
+                    #creates path to save image in a certain format that can be used by keras.image_dataset_from_directory or something like that
                     path = path + str(count) + ".png"
                     count += 1
 
                     # trimming section
                     # thanks to this person https://stackoverflow.com/questions/56719138/how-can-i-save-a-librosa-spectrogram-plot-as-a-specific-sized-image
-
+                    #loads the audio into librosa—this section is kinda copied from runmodel
                     x, sr = librosa.load(dst, sr=1600)
 
                     # test if the file is longer than 30 seconds—if not, then it won't be consistent w training data.

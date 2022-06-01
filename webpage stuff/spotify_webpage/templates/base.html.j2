@@ -24,7 +24,7 @@
       </nav>
 
       <main role="main">
-        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <!-- main title of webpage-->
         <div class="jumbotron">
           <div class="container">
             <h1 class="display-3">Genre Classification</h1>
@@ -33,13 +33,16 @@
         </div>
 
         <div class="container">
-          <!-- Example row of columns -->
+          <!-- displays that connect to the modals -->
+
+          <!-- spotify modal description and button-->
           <div class="row">
             <div class="col-md-4">
               <h2>Song from Spotify</h2>
-              <p>Get a song from your spotify to use for genre classification.</p>
+              <p>Get a song from your spotify to use for genre classification. </p>
               <p><a type="button" class="btn btn-primary" data-toggle="modal" data-target="#spotifyModal">Start &raquo;</a></p>
             </div>
+              <!-- random modal description and button-->
             <div class="col-md-4">
               <h2>Generate Random Song</h2>
               <p>Generate a random song to be used for genre classification.</p>
@@ -49,10 +52,11 @@
           <hr>
 
         </div>
-
+        <!--decision div for loading gif and convenience -->
         <div id="decision"> </div>
+        <!--spectrogram hides/shows as we show the genre -->
         <img src= "static/spectrogram.png" alt = "spectrogram" id="spectrogram">
-
+        <!--connection to genre modal that displays results— hidden at first. -->
         <button id= "genrebutton" class="navbar-toggler" type="button" class="btn btn-primary" data-toggle="modal" data-target="#genreModal"> See Genre Results </span></button>
 
 
@@ -62,11 +66,13 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="spotifyModalLabel">Spotify Modal</h5>
+                <!--this button dismisses the modal -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
+                <!--each modal links to another file for that specific modal interior. -->
                 {% include 'spotify.html.j2' %}
               </div>
               <div class="modal-footer">
@@ -125,14 +131,14 @@
 
       </main>
 
+<!--scripts for js, jquery, ajax, etc. -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="static/functions.js"></script>
-      <script src="https://markjivko.com/dist/recorder.js"></script>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous'></script>
       <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous'></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-      <!-- {% block body %} body empty {% endblock %} -->
+
 
 
 
