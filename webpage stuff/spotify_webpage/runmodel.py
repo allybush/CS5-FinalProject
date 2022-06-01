@@ -78,9 +78,9 @@ def run(path):
         # thanks to this dude for helping with converting an image to a tensor https://www.tutorialspoint.com/how-to-convert-an-image-to-a-pytorch-tensor
 
         image = Image.open(savedimage)
-        image = image.convert('RGB')
+        #image = image.convert('RGB')
         image = np.array(image)
-        image = np.reshape(image,(1,231,348,3))
+        image = np.reshape(image,(1,231,348,4))
         #  ^^ converts single image to a batch.
 
         #creates prediction

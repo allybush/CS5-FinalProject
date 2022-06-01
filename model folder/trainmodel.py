@@ -16,35 +16,32 @@ test = tf.keras.preprocessing.image_dataset_from_directory(datapath, labels='inf
 model = tf.keras.models.Sequential()
 
 # add model layers
+model.add(keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(231, 348, 4)))
+model.add(keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same'))
+model.add(keras.layers.BatchNormalization())
 
-## model.add(tf.keras.layers.Conv2D(64, kernel_size=4, strides=3, input_shape=(288, 432, 4)))
-## model.add(tf.keras.layers.Conv2D(64, kernel_size=6, strides=5))
+ # 2nd conv layer
+model.add(keras.layers.Conv2D(32, (3, 3), activation='relu'))
+model.add(keras.layers.MaxPooling2D((3, 3), strides=(2, 2), padding='same'))
+model.add(keras.layers.BatchNormalization())
 
-model.add(tf.keras.layers.Conv2D(32, 3, activation='relu', input_shape=(231, 348, 4)))
-model.add(tf.keras.layers.MaxPooling2D((3, 3), strides=(2, 2)))
+ # 3rd conv layer
+model.add(keras.layers.Conv2D(32, (2, 2), activation='relu'))
+model.add(keras.layers.MaxPooling2D((2, 2), strides=(2, 2), padding='same'))
+model.add(keras.layers.BatchNormalization())
+model.add(keras.layers.Dropout(0.3))
 
-model.add(tf.keras.layers.Conv2D(64, 5, activation='relu'))
-model.add(tf.keras.layers.MaxPooling2D((3, 3), strides=(2, 2)))
+ # flatten output and feed it into dense layer
+model.add(keras.layers.Flatten())
+model.add(keras.layers.Dense(64, activation='relu'))
 
-model.add(tf.keras.layers.Flatten())
+ # output layer
+model.add(keras.layers.Dense(7, activation='softmax'))
 
-model.add(tf.keras.layers.Dropout(rate=0.7))
-
-model.add(tf.keras.layers.Dense(150, activation='relu'))
-
-model.add(tf.keras.layers.Dropout(rate=0.3))
-
-model.add(tf.keras.layers.Dense(8, activation='softmax'))
-
-
-opt = tf.keras.optimizers.SGD(learning_rate=0.0001) #SGD results in more generalization than ADAM, which makes sense with music genres.
+opt = tf.keras.optimizers.SGD(learning_rate=0.0001)
 
 model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['categorical_accuracy'])
-
-#ty to this person for confusion matrix help: https://stackoverflow.com/questions/39770376/scikit-learn-get-accuracy-scores-for-each-class
-
-
-model.fit(training, validation_data=test, epochs=300)
+model.fit(train, validation_data=test, epochs=30)
 
 
 model = model.save(savemodelpath)
