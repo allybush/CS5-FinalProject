@@ -96,4 +96,4 @@ def run(path):
         return predictions
     else:
         print("Your clip is only " + str(duration) + " seconds. Make sure it's more than 30 seconds!")
-        return "Undefined Class— clip was too short to get a good reading."
+        return "Undefined Class- clip was too short to get a good reading."
