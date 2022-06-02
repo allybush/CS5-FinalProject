@@ -45,7 +45,7 @@ def run(path):
 
     x, sr = librosa.load(dst, sr=1600)
 
-    #test if the file is longer than 30 seconds—if not, then it won't be consistent w training data.
+    #test if the file is longer than 30 seconds.if not, then it won't be consistent w training data.
 
     duration = len(x)/sr
 
