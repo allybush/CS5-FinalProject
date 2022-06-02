@@ -6,6 +6,7 @@
 2. Use an IDE of your choice (we used PyCharm) to open "model folder"
 3. Configure the interpreter for Python 3.8 (the version you just installed) and install the necessary packages (keras, tensorflow, numpy, PIL, matplotlib, librosa, pydub, spotipy, ffmpeg, ffprobe). 
 4. Download the dataset from this link https://drive.google.com/drive/folders/16-_cpPry8Q52JSqxmEAhOwCARg-pBR8k?usp=sharing (if this was successful, skip steps 6-10).
+
 ——————skip if 4 was successful ———————
 6. Create a folder anywhere on your computer titled "Data" with 7 subfolders titled "pop", "rock", "classical", "jazz", "metal", "country", and "rap"
 7. Navigate to `dataset.py` and follow the instructions at the top.
