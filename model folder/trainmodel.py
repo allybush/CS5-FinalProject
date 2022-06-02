@@ -1,5 +1,5 @@
 """
-To use: change "datapath" in line 13 to the absolute path of the "Data folder" (not the inner folders). Change "savemodelpath" in line
+To use: change "datapath" in line 13 to the absolute path of the "Data" folder you created in dataset.py (not the inner folders). Change "savemodelpath" in line
 11 to the path of wherever you want the model to be. This path must be the same as model.load(path) in runmodel.py
 
 """

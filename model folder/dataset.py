@@ -2,8 +2,8 @@
 
 BEFORE USING: Set up a folder called "Data" and create 8 subfolders in that
 folder called "classical", "country", "rap", "jazz", "metal", "pop",
-"rock", or "indie" . Replace the address in the variable "path" in line 67
-with the address to the bigger folder that holds the 8 subfolders. This should
+"rock", or "indie" . Replace the first string in the variable "path" in line 67
+with the absolute path of the bigger folder that holds the 7 subfolders. This should
 fill each subfolder with images of the corresponding genre.
 
 """
@@ -64,7 +64,7 @@ for y in range(len(genresplaylist)):
         playlistresults = sp.playlist(playlistname)
         length = len(playlistresults['tracks']['items'])
         for z in range(length):
-            path = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata/" + genres[y] + "/" + genres[y]
+            path = "/Users/allison/OneDrive - BushChang Corporation/Allison/school/11th grade/cs/kerasstuff/Data/newdata" + "/" + genres[y] + "/" + genres[y]
             try:
                 songurl = playlistresults['tracks']['items'][z]['track']['preview_url']
                 if songurl != None:
@@ -80,6 +80,7 @@ for y in range(len(genresplaylist)):
 
                     path = path + str(count) + ".png"
                     count += 1
+                    print(path)
 
                     # trimming section
                     # thanks to this person https://stackoverflow.com/questions/56719138/how-can-i-save-a-librosa-spectrogram-plot-as-a-specific-sized-image
