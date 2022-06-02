@@ -1,5 +1,5 @@
 """
-To use: change 'model' in line 80 to wherever you saved the model in trainmodel.py.
+To use: change 'model' in line 80 to the absolute path of wherever you saved the model in trainmodel.py (savemodelpath).
 """
 #runs model on url link we give to it
 import keras.models
